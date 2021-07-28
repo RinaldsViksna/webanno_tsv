@@ -18,7 +18,12 @@ HEADERS = ['#FORMAT=WebAnno TSV 3.3']
 TOKEN_FIELDNAMES = ['sent_tok_idx', 'offsets', 'token']
 
 # Strings that need to be escaped with a single backslash according to Webanno Appendix B
-RESERVED_STRS = ['\\', '[', ']', '|', '_', '->', ';', '\t', '\n', '*']
+# https://webanno.github.io/webanno/releases/3.4.5/docs/user-guide.html#_reserved_characters
+# RESERVED_STRS = ['\\', '[', ']', '|', '_', '->', ';', '\t', '\n', '*']
+# However, Inception fails to import webanno tsv files,
+# if any of the following are escaped:
+# '[', ']', '|', '_', '->', ';', '*'
+RESERVED_STRS = ['\\', '\t', '\n', '\r']
 
 # Mulitiline sentences are split on this character per Webanno Appendix B
 MULTILINE_SPLIT_CHAR = '\f'
